@@ -1,0 +1,120 @@
+<h1>Consulta de Curso</h1>
+<h5>Lista dos cursos cadastrados</h5>
+
+<table class="table table-dark table-striped" style="border: 2px solid rgb(255, 255, 255);
+border-radius: 25px;">
+  <thead>
+        <tr>
+            <td>Descrição</td>
+            <td>Data de Início</td>
+            <td>Data de Término</td>
+            <td>Quantidade de Aluno</td>
+            <td>Categoria</td>
+            <td>Opções</td>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let a of curso">
+          <td>{{a.descricao}}</td>
+          <td>{{a.dataInicio | date: "dd/MM/yyyy"}}</td>
+          <td>{{a.dataTermino | date: "dd/MM/yyyy"}}</td>
+          <td>{{a.quantidadeAlunos}}</td>
+          <td>{{a.categoria.categoria}}</td>
+
+          <td>
+            <button class="btn btn-sm btn-primary mr"
+            [routerLink]="['/edita-curso',a.idcurso]">
+              Editar
+            </button>
+
+              &nbsp;
+
+            <button class="btn btn-sm btn-danger" (click)="excluir(a.idcurso)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="6">Total de registros: {{curso.length}}  </td>
+        </tr>
+    </tfoot>
+</table>
+
+
+<form [formGroup]="formPeriodo" (ngSubmit)="onSubmit()">
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label for="">Descrição</label>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="descricao"
+      />
+      <div
+        class="text-danger"
+        *ngIf="form.descricao.touched && form.descricao.invalid"
+      >
+        <span *ngIf="form.descricao.errors.required">
+          Informe a descrição do assunto
+        </span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <label for="">Data de Inicio</label>
+      <input type="date" class="form-control" formControlName="dataInicio" />
+      <div
+        class="text-danger"
+        *ngIf="form.dataInicio.touched && form.dataInicio.invalid"
+      >
+        <span *ngIf="form.dataInicio.errors.required">
+          Informe a Data de Inicio
+        </span>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <label for="">Data de Término</label>
+      <input type="date" class="form-control" formControlName="dataTermino" />
+      <div
+        class="text-danger"
+        *ngIf="form.dataTermino.touched && form.dataTermino.invalid"
+      >
+        <span *ngIf="form.dataTermino.errors.required">
+          Informe a Data de Término
+        </span>
+      </div>
+    </div>
+
+    <div class="row mb-3" style="margin-top: 1%">
+      <div class="col-md-12">
+        <input
+          type="submit"
+          [disabled]="!formPeriodo.valid"
+          class="btn btn-success"
+          value="Consultar"
+        />
+      </div>
+    </div>
+
+    <form></form>
+  </div>
+</form>
+
+
+
+
+
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <a href="http://localhost:4200/pagina-principal"><button class="btn btn-danger">Voltar</button></a>
+  </div>
+</div>
+
+
+
+
+

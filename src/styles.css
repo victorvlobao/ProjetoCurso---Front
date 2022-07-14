@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+*margin{
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url("./assets/teste.webp");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  opacity: 0.85;
+}
